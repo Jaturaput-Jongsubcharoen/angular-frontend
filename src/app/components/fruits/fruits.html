@@ -1,0 +1,25 @@
+<h2>Fruits (Angular ⇄ Node)</h2>
+
+<p><b>Health:</b> {{ healthText }}</p>
+
+<button (click)="loadFruits()">Reload Fruits</button>
+
+<p *ngIf="loading">Loading...</p>
+<p *ngIf="error" style="color:red">{{ error }}</p>
+
+<ul>
+  <li *ngFor="let f of fruits">{{ f }}</li>
+</ul>
+
+<hr />
+
+<h3>Add Fruit (POST /api/fruits)</h3>
+<input [(ngModel)]="newFruit" placeholder="e.g. Pineapple" />
+<button (click)="addFruit()">Add</button>
+
+<hr />
+
+<h3>Replace Fruits (PUT /api/fruits)</h3>
+<p>Enter comma-separated values:</p>
+<input [(ngModel)]="replaceText" placeholder="A,B,C" />
+<button (click)="replaceAll()">Replace</button>
