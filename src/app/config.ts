@@ -1,0 +1,1 @@
+export const API_BASE_URL = (window as any).__API_URL__ ?? '';
