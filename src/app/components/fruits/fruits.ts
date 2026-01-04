@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FruitsService } from '../../services/fruits';
+import { HighlightDirective } from '../../directives/highlight';
 
 @Component({
   selector: 'app-fruits',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HighlightDirective],
   templateUrl: './fruits.html',
   styleUrl: './fruits.css'
 })

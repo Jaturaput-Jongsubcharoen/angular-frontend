@@ -1,25 +1,82 @@
-<h2>Fruits (Angular ⇄ Node)</h2>
+<div class="page">
+  <header class="header">
+    <div>
+      <h2 class="title">Fruits (Angular ⇄ Node)</h2>
+      <p class="subtitle">Simple full-stack demo: GET, POST, PUT</p>
+    </div>
 
-<p><b>Health:</b> {{ healthText }}</p>
+    <div class="status">
+      <span class="badge" [class.ok]="healthText === 'API is healthy'">
+        Health: {{ healthText || '...' }}
+      </span>
+      <button class="btn btn-ghost" (click)="loadFruits()">Reload</button>
+    </div>
+  </header>
 
-<button (click)="loadFruits()">Reload Fruits</button>
+  <section class="grid">
+    <!-- LEFT CARD: Fruits List -->
+    <div class="card">
+      <div class="card-head">
+        <h3 class="card-title">Fruit List</h3>
+        <span class="pill">{{ fruits.length }} items</span>
+      </div>
 
-<p *ngIf="loading">Loading...</p>
-<p *ngIf="error" style="color:red">{{ error }}</p>
+      <p class="muted" *ngIf="loading">Loading...</p>
+      <p class="error" *ngIf="error">{{ error }}</p>
 
-<ul>
-  <li *ngFor="let f of fruits">{{ f }}</li>
-</ul>
+      <ul class="list">
+        <li class="list-item" *ngFor="let f of fruits" appHighlight>
+          <span class="dot"></span>
+          <span class="text">{{ f }}</span>
+        </li>
+      </ul>
 
-<hr />
+      <p class="hint" appHighlight>
+        Hover any fruit to see the directive highlight 🙂
+      </p>
+    </div>
 
-<h3>Add Fruit (POST /api/fruits)</h3>
-<input [(ngModel)]="newFruit" placeholder="e.g. Pineapple" />
-<button (click)="addFruit()">Add</button>
+    <!-- RIGHT CARD: Actions -->
+    <div class="card">
+      <h3 class="card-title">Actions</h3>
 
-<hr />
+      <div class="section">
+        <div class="section-head">
+          <h4>Add Fruit</h4>
+          <span class="tag">POST /api/fruits</span>
+        </div>
 
-<h3>Replace Fruits (PUT /api/fruits)</h3>
-<p>Enter comma-separated values:</p>
-<input [(ngModel)]="replaceText" placeholder="A,B,C" />
-<button (click)="replaceAll()">Replace</button>
+        <div class="row">
+          <input
+            class="input"
+            [(ngModel)]="newFruit"
+            placeholder="e.g. Pineapple"
+          />
+          <button class="btn btn-primary" (click)="addFruit()">Add</button>
+        </div>
+        <p class="muted small">Adds one fruit to the backend list.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <div class="section-head">
+          <h4>Replace All Fruits</h4>
+          <span class="tag">PUT /api/fruits</span>
+        </div>
+
+        <p class="muted small">Enter comma-separated values:</p>
+
+        <div class="row">
+          <input
+            class="input"
+            [(ngModel)]="replaceText"
+            placeholder="A,B,C"
+          />
+          <button class="btn btn-warn" (click)="replaceAll()">Replace</button>
+        </div>
+        <p class="muted small">Replaces the entire list on the backend.</p>
+      </div>
+    </div>
+  </section>
+</div>
