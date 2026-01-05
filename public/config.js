@@ -1,0 +1,1 @@
+window.__API_URL__ = "https://angular-backend-sm79.onrender.com";
